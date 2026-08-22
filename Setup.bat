@@ -1,11 +1,10 @@
 @echo off
 title Insv Marker Extractor - Setup
 echo ==================================================
-echo         Insv Marker Extractor Setup
+echo             Insv Marker Extractor Setup
 echo ==================================================
 echo.
 
-:: Define the shadow installation directory
 set "INSTALL_DIR=%LOCALAPPDATA%\Insv_Marker_Extractor"
 
 echo [*] Creating installation directory at:
@@ -16,7 +15,6 @@ echo [*] Copying core files...
 copy /y "%~dp0core\get_markersV2.ps1" "%INSTALL_DIR%\" > nul
 copy /y "%~dp0core\Extract_Markers.bat" "%INSTALL_DIR%\" > nul
 
-:: Move operation context to the shadow folder
 cd /d "%INSTALL_DIR%"
 
 if exist "insvtools.exe" (
@@ -49,7 +47,6 @@ set "SHORTCUT_PATH=%USERPROFILE%\Desktop\Insv Marker Extractor.lnk"
 set "TARGET_PATH=%INSTALL_DIR%\Extract_Markers.bat"
 set "WORK_DIR=%INSTALL_DIR%"
 
-:: Invoke PowerShell silently to build the .lnk shortcut file
 powershell -NoProfile -Command "$wshell = New-Object -ComObject WScript.Shell; $shortcut = $wshell.CreateShortcut('%SHORTCUT_PATH%'); $shortcut.TargetPath = '%TARGET_PATH%'; $shortcut.WorkingDirectory = '%WORK_DIR%'; $shortcut.Save()"
 
 echo.
@@ -57,15 +54,21 @@ echo ==================================================
 echo [OK] INSTALLATION COMPLETE!
 echo ==================================================
 echo.
-echo INSTALL LOCATION: 
-echo %INSTALL_DIR%
-echo.
 echo HOW TO USE:
-echo A shortcut named "Insv Marker Extractor" has been created on your Desktop.
-echo Do NOT double-click the shortcut. Simply drag and drop your .insv files, 
-echo .lrv files, or a folder containing them directly onto the shortcut icon.
 echo.
-echo You can now safely close this window and delete the downloaded setup files.
+echo [METHOD 1: SIMPLE TIMESTAMP EXTRACTION]
+echo Simply drag and drop your .insv/.lrv files (or a folder) directly onto the 
+echo new Desktop shortcut. The console will print the marker timestamps.
+echo.
+echo [METHOD 2: COMPLETE STUDIO AUTO-KEYFRAMING]
+echo 1. Open your footage in Insta360 Studio, frame your shots if you want (optionally add manual 
+echo    keyframes to set your preferred camera angles), then close the app (close all of its windows).
+echo 2. Drag and drop those same video files onto the Desktop shortcut.
+echo 3. The script will inject the markers as keyframes, matching your angles.
+echo 4. Re-open Insta360 Studio. Double-click your footage in the "Local Media"
+echo    tab, and your markers will be fully editable keyframes on the timeline.
+echo.
+echo You can now safely close this window and delete this setup folder.
 echo ==================================================
 echo.
 pause
