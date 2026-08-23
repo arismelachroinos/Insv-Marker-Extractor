@@ -12,7 +12,7 @@ A lightweight, native Windows utility that extracts timeline markers (highlights
 
 ## Installation
 
-1. Download `Insv_Marker_Extractor.zip` from the latest Release and extract it.
+1. Download `Insv_Marker_Extractor.zip` from the [latest Release](https://github.com/arismelachroinos/Insv-Marker-Extractor/releases/download/v1.1.0/Insv_Marker_Extractor_v1.1.0.zip) and extract it.
 2. Double-click **`Setup.bat`**.
 3. Once setup completes, an **Insv Marker Extractor** shortcut will be created on your Desktop.
 
